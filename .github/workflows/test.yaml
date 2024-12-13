@@ -19,3 +19,9 @@ jobs:
         run: |
           echo "Hello World"
           node -e "console.log('Hello World from Node.js')"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run application
+        run: npm start
