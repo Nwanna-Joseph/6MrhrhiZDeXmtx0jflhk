@@ -1,0 +1,21 @@
+name: Manual Trigger
+
+on:
+  workflow_dispatch:
+
+jobs:
+  print-hello-world:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Print Hello World
+        run: |
+          echo "Hello World"
+          node -e "console.log('Hello World from Node.js')"
