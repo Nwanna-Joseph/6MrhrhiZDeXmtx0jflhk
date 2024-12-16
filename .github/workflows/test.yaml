@@ -2,6 +2,12 @@ name: Manual Trigger
 
 on:
   workflow_dispatch:
+    inputs:
+      artifact_name:
+        description : "Assigned name for the generated archive"
+        required : false
+        default : "generated_debug_build"
+        type: string
 
 jobs:
   print-hello-world:
@@ -28,9 +34,10 @@ jobs:
       - name: Build Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: "generated_debug_build"
+          name: ${{inputs.artifact_name}}
           overwrite: true
           path: "dist"
           include-hidden-files: false
           retention-days: 1
 #https://github.com/actions/upload-artifact
+#https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions
