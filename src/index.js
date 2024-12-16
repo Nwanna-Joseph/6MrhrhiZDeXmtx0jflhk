@@ -12,8 +12,6 @@ function initScene(_scenes){
 
   const {renderer, scene, camera}  = createScene(scene_data, 1000, 600)
 
-
-
   const scr = {scene, camera, renderer}
 
   function animate () {
@@ -24,9 +22,9 @@ function initScene(_scenes){
   addObjects(scene, gameObjects, constructedGameObjects)
 
   onInit(gameObjects, constructedGameObjects, {}, global_var, scr)
-  document.body.appendChild( renderer.domElement );
-  renderer.setAnimationLoop( animate );
 
+  renderer.setAnimationLoop( animate );
+  document.body.appendChild( renderer.domElement );
 }
 
 initScene(gameObjects)
