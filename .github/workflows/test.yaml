@@ -35,14 +35,7 @@ jobs:
           npm install
           npm run build --if-present 
 
-      - name: Build Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{inputs.artifact_name}}
-          overwrite: true
-          path: "dist"
-          include-hidden-files: false
-          retention-days: 1
+
 
       - name: Save Artifact
         uses: actions/upload-artifact@v4
