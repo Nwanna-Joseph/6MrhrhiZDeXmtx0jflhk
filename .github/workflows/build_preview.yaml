@@ -1,0 +1,52 @@
+name: Make Preview Game Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      artifact_name:
+        description : "Assigned name for the generated archive"
+        required : false
+        default : "generated_debug_build"
+        type: string
+      custom_path:
+        description : "The path where state and results are stashed"
+        required : false
+        default : "build_data"
+        type : string
+
+jobs:
+  build_preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Remote API variables in custom path
+        run: |
+          mkdir -p ${{inputs.custom_path}}
+          echo "inprogress" >> ${{inputs.custom_path}}/build_info
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '19'
+
+      - name: Print Hello World
+        run: |
+          echo "Hello World"
+          node -e "console.log('Hello World from Node.js')"
+
+      - name: Install dependencies and build
+        run: |
+          npm install
+          npm run build --if-present 
+
+      - name: Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{inputs.artifact_name}}
+          overwrite: true
+          path: "dist"
+          include-hidden-files: false
+          retention-days: 1
+#https://github.com/actions/upload-artifact
+#https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions
