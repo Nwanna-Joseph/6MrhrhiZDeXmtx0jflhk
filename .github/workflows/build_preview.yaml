@@ -23,7 +23,15 @@ jobs:
   build_preview:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup Remote API variables in custom path
+
+      - name: Cache lookup data for remote API calls
+        id : cache-temp-lookup
+        uses: actions/cache@v4
+        with:
+          path: folder_test #folders/files to cache
+          key: cache_entry_key_001 #key for key:value pair
+
+
         run: |
           mkdir -p ${{inputs.custom_path}}
           echo ${{inputs.remote_text}} >> ${{inputs.custom_path}}/build_info
