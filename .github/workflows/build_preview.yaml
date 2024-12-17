@@ -27,6 +27,9 @@ jobs:
         run: |
           mkdir -p ${{inputs.custom_path}}
           echo ${{inputs.remote_text}} >> ${{inputs.custom_path}}/build_info
+          ls ${{inputs.custom_path}}
+          node -e "console.log('Starting')"
+
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -34,11 +37,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '19'
-
-      - name: Print Hello World
-        run: |
-          echo "Hello World"
-          node -e "console.log('Hello World from Node.js')"
 
       - name: Install dependencies and build
         run: |
