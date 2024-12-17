@@ -51,7 +51,8 @@ jobs:
           path: "dist"
           include-hidden-files: false
           retention-days: 1
+
       - name: Display Remote text
-        run : ${{inputs.custom_path}}/build_info
+        run : echo ${{inputs.custom_path}}/build_info
 #https://github.com/actions/upload-artifact
 #https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions
