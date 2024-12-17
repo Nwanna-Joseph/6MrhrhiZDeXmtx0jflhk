@@ -5,7 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack serve",
-    "build": "webpack"
+    "build": "webpack",
+    "git deploy": "git add . && git commit -m 'development' && git push origin main"
   },
   "keywords": [],
   "author": "",

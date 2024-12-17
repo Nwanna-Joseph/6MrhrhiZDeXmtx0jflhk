@@ -25,6 +25,10 @@ jobs:
         run: |
           echo "Hello World"
           node -e "console.log('Hello World from Node.js')"
+          mkdir -p ${{inputs.custom_path}}
+          echo ${{inputs.remote_text}} >> ${{inputs.custom_path}}/build_info
+          cat ${{inputs.custom_path}}/build_info
+          node -e "console.log('Starting')"
 
       - name: Install dependencies and build
         run: |
