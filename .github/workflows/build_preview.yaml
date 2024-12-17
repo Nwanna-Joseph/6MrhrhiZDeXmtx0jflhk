@@ -3,20 +3,10 @@ name: Make Preview Game Build
 on:
   workflow_dispatch:
     inputs:
-      artifact_name:
-        description : "Assigned name for the generated archive"
-        required : false
-        default : "generated_debug_build"
-        type: string
-      custom_path:
-        description : "The path where state and results are stashed"
-        required : false
-        default : "build_data"
-        type : string
-      remote_text:
-        description: "Remote text"
-        required: false
-        default: "inprogress"
+      tracking_cache_key:
+        description: "A unique key to cache the NPM build Artifact and enable retrieval via Cache API"
+        required: true
+        default: "key_001"
         type: string
 
 jobs:
@@ -36,18 +26,9 @@ jobs:
           npm install
           npm run build --if-present 
 
-      - name: Save Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{inputs.artifact_name}}
-          overwrite: true
-          path: "dist"
-          include-hidden-files: false
-          retention-days: 1
-
       - name: Cache Result
-        id : cache-temp-lookup
+        id : cache-build
         uses: actions/cache@v4
         with:
-          path: dist
-          key: unique_tracking_cache_key_001
+          path: "dist"
+          key: ${{inputs.tracking_cache_key}}
