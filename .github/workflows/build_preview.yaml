@@ -27,7 +27,7 @@ jobs:
         run: |
           mkdir -p ${{inputs.custom_path}}
           echo ${{inputs.remote_text}} >> ${{inputs.custom_path}}/build_info
-          ls ${{inputs.custom_path}}
+          cat ${{inputs.custom_path}}/build_info
           node -e "console.log('Starting')"
 
       - name: Checkout code
