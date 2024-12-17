@@ -26,7 +26,7 @@ jobs:
       - name: Setup Remote API variables in custom path
         run: |
           mkdir -p ${{inputs.custom_path}}
-          echo ${{remote_text}} >> ${{inputs.custom_path}}/build_info
+          echo ${{inputs.remote_text}} >> ${{inputs.custom_path}}/build_info
       - name: Checkout code
         uses: actions/checkout@v4
 
