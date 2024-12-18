@@ -28,3 +28,6 @@ function initScene(_scenes){
 }
 
 initScene(gameObjects)
+console.log(
+    "Incoming..."
+)
